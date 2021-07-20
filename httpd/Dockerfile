@@ -2,5 +2,8 @@ FROM centos:latest
 MAINTAINER pepelepu
 RUN yum -y install httpd; mkdir /opt/shared
 COPY index.html /var/www/html/
-CMD [“/usr/sbin/httpd”, “-D”, “FOREGROUND”]
+RUN systemctl enable httpd.service
+
 EXPOSE 80
+
+CMD ["/usr/sbin/init"]
