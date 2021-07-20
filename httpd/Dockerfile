@@ -13,7 +13,7 @@ RUN sed -E -i -e '/<Directory "\/var\/www\/html">/,/<\/Directory>/s/AllowOverrid
 RUN sed -E -i -e 's/DirectoryIndex (.*)$/DirectoryIndex index.php \1/g' /etc/httpd/conf/httpd.conf
 
 EXPOSE 80
-
+RUN mkdir /opt/share && ln -s /opt/share /var/www/html/
 COPY index.html /var/www/html/index.html
 # Start Apache
 CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
